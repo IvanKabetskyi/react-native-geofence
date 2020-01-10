@@ -1,8 +1,7 @@
-import { NativeModules, NativeAppEventEmitter, AppRegistry } from 'react-native';
+import { NativeModules } from 'react-native';
 
 const { Geofence } = NativeModules;
 
-const geofenceEventEmitter = new NativeAppEventEmitter(Geofence);
 
 const Events = {
 	EXIT: 'onExit',
@@ -12,13 +11,6 @@ const Events = {
 export {
 	Events
 }
-
-const HeadlessGeofenceEventTask = async (({event, ids}) => {
-	console.log(event ,ids);
-	geofenceEventEmitter.emit(event, ids);
-});
-
-AppRegistry.registerHeadlessTask('OnGeofenceEvent', () => HeadlessGeofenceEventTask);
 
 
 export default {
